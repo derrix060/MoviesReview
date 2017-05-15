@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">MoviesReview</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Main Activity -->
+    <string name="search_hint">Enter the movie name...</string>
     <string name="seach_button_descr">Search the movie</string>
+
+    <!-- Movies Activity -->
+    <string name="title_movie">Movies</string>
+    <string name="talkback_movie_image">Movie Image</string>
 </resources>
