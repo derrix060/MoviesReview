@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MoviesReview</string>
     <string name="action_settings">Settings</string>
+    <string name="seach_button_descr">Search the movie</string>
 </resources>
