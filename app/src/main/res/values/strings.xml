@@ -1,5 +1,9 @@
 <resources>
+
+    <!-- API -->
     <string name="api_key">a42f7467f8d140f4bc85850b29a5d8c6</string>
+    <string name="api_endpoint">https://api.nytimes.com/svc/movies/v2/reviews/search.json</string>
+
     <string name="app_name">MoviesReview</string>
     <string name="action_settings">Settings</string>
 
@@ -13,4 +17,6 @@
 
     <!-- Card -->
     <string name="see_more">See more</string>
+
+    <string name="waiting">Please wait a little while. We are searching your movie...</string>
 </resources>
