@@ -23,7 +23,6 @@
             android:gravity="center">
 
             <LinearLayout
-                android:id="@+id/hold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -33,85 +32,106 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    >
-
-                    <RatingBar
-                        android:id="@+id/rating"
-                        style="?android:attr/ratingBarStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:isIndicator="true"
-                        android:numStars="5"
-                        android:rating="3.3"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_below="@+id/title"
-                        android:progressBackgroundTint="@color/colorSecondaryText"
-                        android:progressTint="@color/starFill"
-                        android:indeterminateTint="@color/starFill"
-                        android:foregroundTint="@color/starFill"
-                        android:secondaryProgressTint="@color/starFill"
-                        android:secondaryProgressTintMode="src_in"
-                        android:indeterminateTintMode="src_in"
-                        />
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="The Lord of The Rings: The Return of the King"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:layout_alignParentTop="true"
                         android:layout_alignParentStart="true"
-                        android:paddingTop="10dp"
+                        android:layout_alignParentTop="true"
                         android:paddingEnd="2dp"
                         android:paddingStart="10dp"
+                        android:paddingTop="10dp"
+                        android:text="The Lord of The Rings: The Return of the King"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
 
                         />
 
 
                     <TextView
-                        android:id="@+id/movieRating"
+                        android:id="@+id/publish_descr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10.0"
-                        android:textSize="12sp"
-                        android:paddingTop="3dp"
-                        android:paddingBottom="2dp"
-                        android:layout_marginStart="5dp"
+                        android:text="Publish date: "
+                        android:padding="3dp"
                         android:layout_below="@+id/title"
-                        android:layout_toEndOf="@+id/rating"/>
+                        android:layout_toStartOf="@+id/publish_date" />
+
+
+                    <TextView
+                        android:id="@+id/publish_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="2dp"
+                        android:padding="3dp"
+                        android:text="15/5/2017"
+                        android:textSize="12sp"
+                        android:layout_alignTop="@+id/publish_descr"
+                        android:layout_alignParentEnd="true" />
 
 
                     <TextView
                         android:id="@+id/description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="It's 1954, and up-and-coming U.S. marshal Teddy Daniels is assigned to investigate the disappearance of a patient from Boston's Shutter Island."
-                        android:layout_below="@+id/rating"
-                        android:textSize="14sp"
+                        android:layout_below="@+id/publish_descr"
                         android:paddingEnd="2dp"
                         android:paddingStart="10dp"
-                        />
+                        android:text="It's 1954, and up-and-coming U.S. marshal Teddy Daniels is assigned to investigate the disappearance of a patient from Boston's Shutter Island."
+                        android:textSize="14sp" />
+
+
+                    <RatingBar
+                        android:id="@+id/rating"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginStart="10dp"
+                        android:foregroundTint="@color/starFill"
+                        android:indeterminateTint="@color/starFill"
+                        android:indeterminateTintMode="src_in"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:progressBackgroundTint="@color/colorSecondaryText"
+                        android:progressTint="@color/starFill"
+                        android:rating="3.3"
+                        android:secondaryProgressTint="@color/starFill"
+                        android:secondaryProgressTintMode="src_in"
+                        android:layout_alignTop="@+id/movieRating" />
+
+
+                    <TextView
+                        android:id="@+id/movieRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/btnSeeMore"
+                        android:layout_below="@+id/description"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@+id/rating"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="3dp"
+                        android:text="7"
+                        android:textSize="12sp" />
+
 
                     <Button
                         android:id="@+id/btnSeeMore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/description"
                         android:layout_alignParentEnd="true"
-                        android:text="See more"
-                        android:textSize="12dp"
+                        android:layout_below="@+id/description"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@null"
                         android:onClick="openTrailerVideo"
                         android:paddingBottom="2dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
                         android:paddingTop="2dp"
-                        android:background="@null"
-                        android:textColor="@color/colorAccent"/>
+                        android:text="@string/see_more"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12dp" />
                 </RelativeLayout>
 
             </LinearLayout>
