@@ -10,6 +10,7 @@ public class Movie {
     public String title;
     public String publish_date;
     public String review;
+    // rating?
 
     public Movie(String imagePath, String title, String publish_date, String review) {
         this.imagePath = imagePath;
