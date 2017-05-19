@@ -7,5 +7,5 @@ package com.example.mario.moviesreview;
 public class MovieListActivity {
     private Movie[] movies;
 
-    
+
 }

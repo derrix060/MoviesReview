@@ -1,52 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:cardElevation="5dp"
+    app:cardUseCompatPadding="false"
+    app:cardPreventCornerOverlap="true"
+    card_view:cardCornerRadius="2dp"
+    android:layout_margin="@dimen/card_margin"
+    >
 
-
-    <ImageView
-        android:id="@+id/movie_image"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_local_movies_black_24dp"
-        android:layout_marginLeft="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_centerVertical="true"
-        android:padding="5dp"
-        android:layout_alignParentStart="true" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/movie_title"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:paddingLeft="5dp"
-        android:text="Title Example"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/movie_image" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
 
-    <TextView
-        android:id="@+id/publish_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/movie_title"
-        android:layout_alignBottom="@+id/movie_title"
-        android:layout_alignParentEnd="true"
-        android:paddingLeft="5dp"
-        android:text="16/5/2017" />
+            <LinearLayout
+                android:id="@+id/hold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/movie_review"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="bla bla bla bla bla bla..."
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_toEndOf="@+id/movie_image"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    >
+
+                    <RatingBar
+                        android:id="@+id/rating"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:rating="3.3"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_below="@+id/title"
+                        android:progressBackgroundTint="@color/colorSecondaryText"
+                        android:progressTint="@color/starFill"
+                        android:indeterminateTint="@color/starFill"
+                        android:foregroundTint="@color/starFill"
+                        android:secondaryProgressTint="@color/starFill"
+                        android:secondaryProgressTintMode="src_in"
+                        android:indeterminateTintMode="src_in"
+                        />
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="The Lord of The Rings: The Return of the King"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="2dp"
+                        android:paddingStart="10dp"
+
+                        />
 
 
+                    <TextView
+                        android:id="@+id/movieRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10.0"
+                        android:textSize="12sp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="2dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_below="@+id/title"
+                        android:layout_toEndOf="@+id/rating"/>
 
-</RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="It's 1954, and up-and-coming U.S. marshal Teddy Daniels is assigned to investigate the disappearance of a patient from Boston's Shutter Island."
+                        android:layout_below="@+id/rating"
+                        android:textSize="14sp"
+                        android:paddingEnd="2dp"
+                        android:paddingStart="10dp"
+                        />
+
+                    <Button
+                        android:id="@+id/btnSeeMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/description"
+                        android:layout_alignParentEnd="true"
+                        android:text="See more"
+                        android:textSize="12dp"
+                        android:onClick="openTrailerVideo"
+                        android:paddingBottom="2dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:paddingTop="2dp"
+                        android:background="@null"
+                        android:textColor="@color/colorAccent"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/filmImage"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/titanic"
+                android:layout_margin="@dimen/card_margin"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
