@@ -10,11 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.net.URL;
-import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity {
     TextView hint;
     EditText txtSearch;
+    ApiUtil apiUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +32,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         txtSearch = (EditText) findViewById(R.id.txtSearch);
+
+        apiUtil = new ApiUtil();
     }
 
     private void fabAction(View view) {
 
         result(view, getText(R.string.waiting).toString());
 
-        URL requestUrl = createURL();
+        URL requestUrl = apiUtil.createURL(txtSearch.getText().toString());
 
 
         result(view, requestUrl.toString());

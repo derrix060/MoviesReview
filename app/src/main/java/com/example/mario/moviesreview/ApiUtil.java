@@ -17,16 +17,24 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
+import static android.R.id.list;
 import static com.example.mario.moviesreview.R.id.txtSearch;
 
 /**
  * Created by mario on 19/05/17.
  */
 
-public class apiUtil {
+public class ApiUtil {
 
-    private URL createURL() {
+    ArrayList<Movie> movieList;
+
+    public ApiUtil(){
+        movieList = new ArrayList<>();
+    }
+
+    public URL createURL(String movie) {
 
         String apiKey = getString(R.string.api_key);
         String baseUrl = getString(R.string.api_endpoint);
@@ -39,7 +47,7 @@ public class apiUtil {
 
         try {
             String urlString = baseUrl + "?api_key=" + apiKey +
-                    "&query=" + URLEncoder.encode(txtSearch.getText().toString(), "UTF-8");
+                    "&query=" + URLEncoder.encode(movie, "UTF-8");
 
             return new URL(urlString);
         } catch (Exception e) {
@@ -52,16 +60,18 @@ public class apiUtil {
     private void convertJSONToArrayList (JSONObject forecast){
         movieList.clear();
         try{
-            JSONArray list = forecast.getJSONArray("list");
-            for (int i = 0; i < list.length(); i++){
-                JSONObject day = list.getJSONObject(i);
-                JSONObject temperatures = day.getJSONObject("temp");
-                JSONObject weather =
-                        day.getJSONArray("weather").getJSONObject(0);
-                movieList.add (new Weather(day.getLong("dt"),
-                        temperatures.getDouble("min"),
-                        temperatures.getDouble("max"), day.getDouble ("humidity"),
-                        weather.getString("description"),weather.getString("icon")));
+            JSONArray movies = forecast.getJSONArray("results");
+            for (int i = 0; i < movies.length(); i++){
+                JSONObject movie = movies.getJSONObject(i);
+                String title = movie.getString("display_title");
+                String publish_date = movie.getString("publication_date");
+                String summary = movie.getString("summary_short");
+                String link = movie.getJSONObject("link").getString("url");
+                String image = "";
+                if (movie.getJSONObject("multimedia") != JSONObject.NULL)
+                    image = movie.getJSONObject("multimedia").getString("src");
+
+                movieList.add(new Movie(image, title, publish_date, summary, link));
             }
         }
         catch (JSONException e){
