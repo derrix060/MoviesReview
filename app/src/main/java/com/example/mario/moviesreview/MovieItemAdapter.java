@@ -1,11 +1,18 @@
 package com.example.mario.moviesreview;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Created by mario on 15/05/17.
@@ -35,7 +42,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
             movie_review = (TextView)itemView.findViewById(R.id.description);
 
             // Set description when talkback is activated
-            img.setContentDescription(title.getText().toString() + R.string.talkback_movie_image);
+            img.setContentDescription(title.getText().toString() + " " + R.string.talkback_movie_image);
 
         }
     }
@@ -50,23 +57,63 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.list_item, viewGroup, false);
 
-        ItemViewHolder ivh = new ItemViewHolder(v);
-        return ivh;
+        return new ItemViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ItemViewHolder itemViewHolder, int position) {
-        itemViewHolder.title.setText(myItens[position].title);
-        itemViewHolder.movie_review.setText(myItens[position].review);
-        itemViewHolder.publish_date.setText(myItens[position].publish_date);
+        Movie movie = myItens[position];
+
+        itemViewHolder.title.setText(movie.title);
+        itemViewHolder.movie_review.setText(movie.review);
+        itemViewHolder.publish_date.setText(movie.publish_date);
 
         // Get image from NY Times
-        //itemViewHolder.img.setImageResource(myItens[position].imagePath);
-        //itemViewHolder.img.setImageURI(URI.create(myItens[position].imagePath));
+        //new LoadImageTask(itemViewHolder.img).execute(movie.imagePath);
+
     }
 
     @Override
     public int getItemCount() {
         return myItens.length;
     }
+
+
+    private class LoadImageTask extends AsyncTask<String,Void,Bitmap> {
+        private ImageView imageView;
+
+        public LoadImageTask(ImageView imageView) {
+            this.imageView = imageView;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            Bitmap bitmap = null;
+
+            HttpURLConnection connection = null;
+
+            try {
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                try (InputStream inputStream = connection.getInputStream()) {
+                    bitmap = BitmapFactory.decodeStream(inputStream);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                connection.disconnect();
+            }
+
+            return bitmap;
+        }
+
+        protected void onPostExecute(Bitmap bitmap) {
+            imageView.setImageBitmap(bitmap);
+        }
+    }
+
 }
+

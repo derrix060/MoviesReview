@@ -1,26 +1,13 @@
 package com.example.mario.moviesreview;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
-import android.widget.ImageView;
+import android.app.Activity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-
-import static android.R.id.list;
-import static com.example.mario.moviesreview.R.id.txtSearch;
 
 /**
  * Created by mario on 19/05/17.
@@ -28,16 +15,16 @@ import static com.example.mario.moviesreview.R.id.txtSearch;
 
 public class ApiUtil {
 
-    ArrayList<Movie> movieList;
+    Activity activity;
 
-    public ApiUtil(){
-        movieList = new ArrayList<>();
+    public ApiUtil(Activity activity){
+        this.activity = activity;
     }
 
     public URL createURL(String movie) {
 
-        String apiKey = getString(R.string.api_key);
-        String baseUrl = getString(R.string.api_endpoint);
+        String apiKey = "a42f7467f8d140f4bc85850b29a5d8c6";
+        String baseUrl = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
         // Example: https://api.nytimes.com/svc/movies/v2/reviews/search.json?api_key=a42f7467f8d140f4bc85850b29a5d8c6&query=terminator+genisys
 
         /*
@@ -57,10 +44,13 @@ public class ApiUtil {
         return null;
     }
 
-    private void convertJSONToArrayList (JSONObject forecast){
-        movieList.clear();
+    public Movie[] convertJSONToArrayList (JSONObject moviesJSON){
+
+
+
         try{
-            JSONArray movies = forecast.getJSONArray("results");
+            JSONArray movies = moviesJSON.getJSONArray("results");
+            Movie[] movieList = new Movie[movies.length()];
             for (int i = 0; i < movies.length(); i++){
                 JSONObject movie = movies.getJSONObject(i);
                 String title = movie.getString("display_title");
@@ -71,84 +61,16 @@ public class ApiUtil {
                 if (movie.getJSONObject("multimedia") != JSONObject.NULL)
                     image = movie.getJSONObject("multimedia").getString("src");
 
-                movieList.add(new Movie(image, title, publish_date, summary, link));
+                movieList[i] = new Movie(image, title, publish_date, summary, link);
+                return movieList;
             }
         }
         catch (JSONException e){
             e.printStackTrace();
         }
+        return null;
     }
 
-    private class GetMoviesTask extends AsyncTask<URL, Void, JSONObject> {
-        protected JSONObject doInBackground(URL... params) {
-            HttpURLConnection connection = null;
-            try {
-                connection = (HttpURLConnection) params[0].openConnection();
-                int response = connection.getResponseCode();
-                if (response == HttpURLConnection.HTTP_OK) {
-                    StringBuilder builder = new StringBuilder();
-                    try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-                        String line;
-                        while ((line = reader.readLine()) != null) {
-                            builder.append(line);
-                        }
-                    } catch (IOException e) {
-                        Snackbar.make(findViewById(R.id.coordinatorLayout), R.string.read_error, Snackbar.LENGTH_LONG).show();
-                        e.printStackTrace();
-                    }
-                    return new JSONObject(builder.toString());
-                }
-            } catch (Exception e) {
-                Snackbar.make(findViewById(R.id.coordinatorLayout), R.string.connect_error, Snackbar.LENGTH_LONG).show();
-                e.printStackTrace();
-            } finally {
-                if (connection != null) {
-                    connection.disconnect();
-                }
-            }
-            return null;
-        }
 
-        protected void onPostExecute(JSONObject weather) {
-            convertJSONToArrayList(weather);
-            weatherArrayAdapter.notifyDataSetChanged();
-            weatherListView.smoothScrollToPosition(0);
-        }
-    }
 
-    private class LoadImageTask extends AsyncTask<String,Void,Bitmap> {
-        private ImageView imageView;
-
-        public LoadImageTask(ImageView imageView) {
-            this.imageView = imageView;
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... params) {
-            Bitmap bitmap = null;
-
-            HttpURLConnection connection = null;
-
-            try {
-                URL url = new URL(params[0]);
-                connection = (HttpURLConnection) url.openConnection();
-                try (InputStream inputStream = connection.getInputStream()) {
-                    bitmap = BitmapFactory.decodeStream(inputStream);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                connection.disconnect();
-            }
-
-            return bitmap;
-        }
-
-        protected void onPostExecute(Bitmap bitmap) {
-            imageView.setImageBitmap(bitmap);
-        }
-    }
 }

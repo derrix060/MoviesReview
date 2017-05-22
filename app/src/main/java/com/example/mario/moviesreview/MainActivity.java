@@ -1,20 +1,14 @@
 package com.example.mario.moviesreview;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-    TextView hint;
     EditText txtSearch;
-    ApiUtil apiUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,38 +17,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_search);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fabAction(view);
-            }
-        });
-
         txtSearch = (EditText) findViewById(R.id.txtSearch);
-
-        apiUtil = new ApiUtil();
     }
 
-    private void fabAction(View view) {
-
-        result(view, getText(R.string.waiting).toString());
-
-        URL requestUrl = apiUtil.createURL(txtSearch.getText().toString());
-
-
-        result(view, requestUrl.toString());
+    public void fabAction(View view){
+        Intent myIntent = new Intent(this, MovieListActivity.class);
+        myIntent.putExtra("movieToSearch", txtSearch.getText().toString()); //Optional parameters
+        startActivity(myIntent);
     }
-
-
-
-
-    private void result(View view, String text) {
-        Snackbar.make(view, text, Snackbar.LENGTH_SHORT)
-                .setAction("Action", null).show();
-    }
-
-
 
 }
 

@@ -29,6 +29,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:elevation="8dp"
+        android:onClick="fabAction"
         android:contentDescription="@string/seach_button_descr"
         app:fabSize="normal"
         app:srcCompat="@android:drawable/ic_menu_search" />
