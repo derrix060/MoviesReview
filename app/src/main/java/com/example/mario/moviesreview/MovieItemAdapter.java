@@ -37,9 +37,9 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
 
             //cv = (CardView)itemView.findViewById(R.id.detach_card);
             img = (ImageView)itemView.findViewById(R.id.filmImage);
-            title = (TextView)itemView.findViewById(R.id.title_movies);
+            title = (TextView)itemView.findViewById(R.id.movie_title);
             publish_date = (TextView)itemView.findViewById(R.id.publish_date);
-            movie_review = (TextView)itemView.findViewById(R.id.description);
+            movie_review = (TextView)itemView.findViewById(R.id.movie_description);
 
             // Set description when talkback is activated
             img.setContentDescription(title.getText().toString() + " " + R.string.talkback_movie_image);

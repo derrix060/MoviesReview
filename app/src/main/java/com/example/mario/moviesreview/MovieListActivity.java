@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import org.json.JSONObject;
@@ -34,7 +35,7 @@ public class MovieListActivity extends AppCompatActivity {
         // Inflate view
         setContentView(R.layout.movies_view);
 
-        /*
+
         mRecyclerView = (RecyclerView) findViewById(R.id.movies_rv);
         // improve performance when you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -44,9 +45,12 @@ public class MovieListActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Custom adapter
+        Snackbar.make(findViewById(R.id.moviesLayout), moviesList[0].toString(), Snackbar.LENGTH_SHORT).show();
+
+
         adapter = new MovieItemAdapter(moviesList);
         mRecyclerView.setAdapter(adapter);
-
+        /*
         // Get api Util to use NYTimes API
         //apiUtil = new ApiUtil(this);
 
@@ -54,7 +58,7 @@ public class MovieListActivity extends AppCompatActivity {
         //String movieToSeach = getIntent().getStringExtra("movieToSearch");
 
         //new GetMoviesTask().execute(movieToSeach);
-         */
+        */
 
     }
 

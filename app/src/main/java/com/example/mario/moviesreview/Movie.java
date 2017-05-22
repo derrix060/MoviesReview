@@ -20,4 +20,13 @@ public class Movie {
         this.review = review;
         this.link = link;
     }
+
+    @Override
+    public String toString(){
+        String rtn = "";
+
+        rtn += "Title: " + this.title;
+
+        return rtn;
+    }
 }
