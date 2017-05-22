@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 /**
  * Created by mario on 19/05/17.
@@ -44,13 +45,12 @@ public class ApiUtil {
         return null;
     }
 
-    public Movie[] convertJSONToArrayList (JSONObject moviesJSON){
+    public ArrayList<Movie> convertJSONToArrayList (JSONObject moviesJSON){
 
-
+        ArrayList<Movie> movieList = new ArrayList<>();
 
         try{
             JSONArray movies = moviesJSON.getJSONArray("results");
-            Movie[] movieList = new Movie[movies.length()];
             for (int i = 0; i < movies.length(); i++){
                 JSONObject movie = movies.getJSONObject(i);
                 String title = movie.getString("display_title");
@@ -61,16 +61,14 @@ public class ApiUtil {
                 if (movie.getJSONObject("multimedia") != JSONObject.NULL)
                     image = movie.getJSONObject("multimedia").getString("src");
 
-                movieList[i] = new Movie(image, title, publish_date, summary, link);
-                return movieList;
+                movieList.add(new Movie(image, title, publish_date, summary, link));
+
             }
         }
         catch (JSONException e){
             e.printStackTrace();
         }
-        return null;
+        return movieList;
     }
-
-
 
 }

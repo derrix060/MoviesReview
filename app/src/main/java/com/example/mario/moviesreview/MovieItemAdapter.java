@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Created by mario on 15/05/17.
@@ -20,7 +21,7 @@ import java.net.URL;
 
 public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.ItemViewHolder> {
 
-    private Movie[] myItens;
+    private ArrayList<Movie> myItens;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -48,7 +49,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
     }
 
     // Constructor
-    public MovieItemAdapter(Movie[] myItens){
+    public MovieItemAdapter(ArrayList<Movie> myItens){
         this.myItens = myItens;
     }
 
@@ -62,7 +63,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
 
     @Override
     public void onBindViewHolder(ItemViewHolder itemViewHolder, int position) {
-        Movie movie = myItens[position];
+        Movie movie = myItens.get(position);
 
         itemViewHolder.title.setText(movie.title);
         itemViewHolder.movie_review.setText(movie.review);
@@ -75,7 +76,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
 
     @Override
     public int getItemCount() {
-        return myItens.length;
+        return myItens.size();
     }
 
 

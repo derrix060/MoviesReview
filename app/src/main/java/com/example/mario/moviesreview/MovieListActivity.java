@@ -14,13 +14,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Created by mario on 15/05/17.
  */
 
 public class MovieListActivity extends AppCompatActivity {
-    private Movie[] moviesList;
+    private ArrayList<Movie> moviesList;
     private ApiUtil apiUtil;
     private RecyclerView mRecyclerView;
     private MovieItemAdapter adapter;
@@ -61,9 +62,9 @@ public class MovieListActivity extends AppCompatActivity {
     }
 
 
-    private class GetMoviesTask extends AsyncTask<String, Void, Movie[]> {
+    private class GetMoviesTask extends AsyncTask<String, Void, ArrayList<Movie>> {
 
-        protected Movie[] doInBackground(String... movies) {
+        protected ArrayList<Movie> doInBackground(String... movies) {
 
             URL url = apiUtil.createURL(movies[0]);
 
@@ -92,10 +93,10 @@ public class MovieListActivity extends AppCompatActivity {
                     connection.disconnect();
                 }
             }
-            return new Movie[0];
+            return new ArrayList<>();
         }
 
-        protected void onPostExecute(Movie[] movies) {
+        protected void onPostExecute(ArrayList<Movie> movies) {
             moviesList = movies;
             adapter.notifyDataSetChanged();
             mRecyclerView.smoothScrollToPosition(0);
@@ -103,14 +104,14 @@ public class MovieListActivity extends AppCompatActivity {
     }
 
     private void populateMovies(){
-        moviesList = new Movie[1];
+        moviesList = new ArrayList<>();
         Movie m = new Movie("https:\\/\\/static01.nyt.com\\/images\\/2015\\/07\\/01\\/arts\\/01TERMINATESUB\\/01TERMINATESUB-mediumThreeByTwo210.jpg",
                "Terminator: Genisys",
                 "2015-06-30",
                 "Arnold Schwarzenegger returns, it\\u2019s 1984 again, and Sarah Connor is at risk once more.",
                 "http:\\/\\/www.nytimes.com\\/2015\\/07\\/01\\/movies\\/review-terminator-genisys-shows-that-arnold-schwarzenegger-is-most-assuredly-back.html" );
 
-        moviesList[0] = m;
+        moviesList.add(m);
 
         // Example: https://api.nytimes.com/svc/movies/v2/reviews/search.json?api_key=a42f7467f8d140f4bc85850b29a5d8c6&query=terminator+genisys
 
