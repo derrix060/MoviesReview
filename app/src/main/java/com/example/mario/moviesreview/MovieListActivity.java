@@ -45,27 +45,25 @@ public class MovieListActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Custom adapter
-        Snackbar.make(findViewById(R.id.moviesLayout), moviesList[0].toString(), Snackbar.LENGTH_SHORT).show();
-
-
         adapter = new MovieItemAdapter(moviesList);
         mRecyclerView.setAdapter(adapter);
-        /*
+
         // Get api Util to use NYTimes API
-        //apiUtil = new ApiUtil(this);
+        apiUtil = new ApiUtil(this);
 
         // Get list of movies
-        //String movieToSeach = getIntent().getStringExtra("movieToSearch");
+        String movieToSeach = getIntent().getStringExtra("movieToSearch");
 
-        //new GetMoviesTask().execute(movieToSeach);
-        */
+        Snackbar.make(findViewById(R.id.moviesLayout), movieToSeach, Snackbar.LENGTH_SHORT).show();
+
+        new GetMoviesTask().execute(movieToSeach);
 
     }
 
 
-    private class GetMoviesTask extends AsyncTask<String, Void, JSONObject> {
+    private class GetMoviesTask extends AsyncTask<String, Void, Movie[]> {
 
-        protected JSONObject doInBackground(String... movies) {
+        protected Movie[] doInBackground(String... movies) {
 
             URL url = apiUtil.createURL(movies[0]);
 
@@ -81,25 +79,24 @@ public class MovieListActivity extends AppCompatActivity {
                             builder.append(line);
                         }
                     } catch (IOException e) {
-                        Snackbar.make(findViewById(R.id.moviesLayout), R.string.read_error, Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(findViewById(R.id.moviesLayout), getString(R.string.read_error), Snackbar.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
-                    return new JSONObject(builder.toString());
+                    return apiUtil.convertJSONToArrayList(new JSONObject(builder.toString()));
                 }
             } catch (Exception e) {
-                Snackbar.make(findViewById(R.id.moviesLayout), R.string.connect_error, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.moviesLayout), getString(R.string.connect_error), Snackbar.LENGTH_LONG).show();
                 e.printStackTrace();
             } finally {
                 if (connection != null) {
                     connection.disconnect();
                 }
             }
-            return null;
+            return new Movie[0];
         }
 
-        protected void onPostExecute(JSONObject moviesJSON) {
-            super.onPostExecute(moviesJSON);
-            moviesList = apiUtil.convertJSONToArrayList(moviesJSON);
+        protected void onPostExecute(Movie[] movies) {
+            moviesList = movies;
             adapter.notifyDataSetChanged();
             mRecyclerView.smoothScrollToPosition(0);
         }
