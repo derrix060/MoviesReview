@@ -66,8 +66,9 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
         Movie movie = myItens.get(position);
 
         itemViewHolder.title.setText(movie.title);
-        itemViewHolder.movie_review.setText(movie.review);
+        itemViewHolder.movie_review.setText(movie.headline);
         itemViewHolder.publish_date.setText(movie.publish_date);
+
 
         // Get image from NY Times
         //new LoadImageTask(itemViewHolder.img).execute(movie.imagePath);

@@ -61,7 +61,8 @@ public class ApiUtil {
                 if (movie.getJSONObject("multimedia") != JSONObject.NULL)
                     image = movie.getJSONObject("multimedia").getString("src");
 
-                movieList.add(new Movie(image, title, publish_date, summary, link));
+                String headline = movie.getString("headline");
+                movieList.add(new Movie(image, title, publish_date, summary, link, headline));
 
             }
         }

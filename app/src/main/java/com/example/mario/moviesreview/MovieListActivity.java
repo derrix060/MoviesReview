@@ -109,7 +109,8 @@ public class MovieListActivity extends AppCompatActivity {
                "Terminator: Genisys",
                 "2015-06-30",
                 "Arnold Schwarzenegger returns, it\\u2019s 1984 again, and Sarah Connor is at risk once more.",
-                "http:\\/\\/www.nytimes.com\\/2015\\/07\\/01\\/movies\\/review-terminator-genisys-shows-that-arnold-schwarzenegger-is-most-assuredly-back.html" );
+                "http:\\/\\/www.nytimes.com\\/2015\\/07\\/01\\/movies\\/review-terminator-genisys-shows-that-arnold-schwarzenegger-is-most-assuredly-back.html",
+                "Review: In \\u2018Terminator Genisys,\\u2019 Ageless Cyborgs and a Deathless Franchise");
 
         moviesList.add(m);
 
