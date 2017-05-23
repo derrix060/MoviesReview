@@ -43,10 +43,9 @@
                         android:paddingEnd="2dp"
                         android:paddingStart="10dp"
                         android:paddingTop="10dp"
-                        android:text="The Lord of The Rings: The Return of the King"
+                        android:text="Terminator: Genisys"
                         android:textSize="18sp"
                         android:textStyle="bold"
-
                         />
 
 
@@ -79,7 +78,7 @@
                         android:layout_below="@+id/publish_descr"
                         android:paddingEnd="2dp"
                         android:paddingStart="10dp"
-                        android:text="It's 1954, and up-and-coming U.S. marshal Teddy Daniels is assigned to investigate the disappearance of a patient from Boston's Shutter Island."
+                        android:text="Review: In \u2018Terminator Genisys,\u2019 Ageless Cyborgs and a Deathless Franchise"
                         android:textSize="14sp" />
 
 
