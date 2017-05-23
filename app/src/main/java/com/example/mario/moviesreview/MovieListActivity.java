@@ -55,8 +55,6 @@ public class MovieListActivity extends AppCompatActivity {
         // Get list of movies
         String movieToSeach = getIntent().getStringExtra("movieToSearch");
 
-        Snackbar.make(findViewById(R.id.moviesLayout), movieToSeach, Snackbar.LENGTH_SHORT).show();
-
         new GetMoviesTask().execute(movieToSeach);
 
     }
@@ -98,7 +96,8 @@ public class MovieListActivity extends AppCompatActivity {
 
         protected void onPostExecute(ArrayList<Movie> movies) {
             moviesList = movies;
-            adapter.notifyDataSetChanged();
+            adapter = new MovieItemAdapter(moviesList);
+            mRecyclerView.setAdapter(adapter);
             mRecyclerView.smoothScrollToPosition(0);
         }
     }
