@@ -72,9 +72,12 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
         itemViewHolder.movie_review.setText(movie.headline);
         itemViewHolder.publish_date.setText(movie.publish_date);
 
-
-        // Get image from NY Times
-        //new LoadImageTask(itemViewHolder.img).execute(movie.imagePath);
+        if (movie.imagePath == ""){
+            itemViewHolder.img.setMaxHeight(0);
+        }
+        else{
+            new LoadImageTask(itemViewHolder.img).execute(movie.imagePath);
+        }
 
     }
 

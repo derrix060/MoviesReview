@@ -50,10 +50,10 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         if (imageURL == ""){
             image.setMaxHeight(0);
+            image.setMaxWidth(0);
         }
         else {
-            LoadImageTask loadImageTask = new LoadImageTask(image);
-            loadImageTask.execute(imageURL);
+            new LoadImageTask(image).execute(imageURL);
         }
 
         btnSeeMore.setOnClickListener(new View.OnClickListener() {
