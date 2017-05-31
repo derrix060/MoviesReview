@@ -1,11 +1,17 @@
-package com.example.mario.moviesreview;
+package com.example.mario.moviesreview.view;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.example.mario.moviesreview.controller.ApiUtil;
+import com.example.mario.moviesreview.controller.MovieItemAdapter;
+import com.example.mario.moviesreview.R;
+import com.example.mario.moviesreview.model.Movie;
 
 import org.json.JSONObject;
 
@@ -56,6 +62,15 @@ public class MovieListActivity extends AppCompatActivity {
         String movieToSeach = getIntent().getStringExtra("movieToSearch");
 
         new GetMoviesTask().execute(movieToSeach);
+
+
+
+    }
+
+    private void movie_click(Movie m){
+        Intent intent = new Intent(this, MovieDetailActivity.class);
+        intent.putExtra("MOVIE_URL", m.getLink()); //Optional parameters
+        startActivity(intent);
 
     }
 

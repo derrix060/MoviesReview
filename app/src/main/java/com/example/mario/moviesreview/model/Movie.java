@@ -1,4 +1,4 @@
-package com.example.mario.moviesreview;
+package com.example.mario.moviesreview.model;
 
 /**
  * Created by mario on 15/05/17.
@@ -35,5 +35,9 @@ public class Movie {
         rtn += "Title: " + this.title;
 
         return rtn;
+    }
+
+    public String getLink(){
+        return this.link;
     }
 }

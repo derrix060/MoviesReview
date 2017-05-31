@@ -1,6 +1,8 @@
-package com.example.mario.moviesreview;
+package com.example.mario.moviesreview.controller;
 
 import android.app.Activity;
+
+import com.example.mario.moviesreview.model.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;

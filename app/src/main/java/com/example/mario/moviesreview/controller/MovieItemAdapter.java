@@ -1,4 +1,4 @@
-package com.example.mario.moviesreview;
+package com.example.mario.moviesreview.controller;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.mario.moviesreview.R;
+import com.example.mario.moviesreview.model.Movie;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
