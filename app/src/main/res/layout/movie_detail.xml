@@ -25,6 +25,12 @@
         android:textAlignment="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_detail_image"
+        />
     <TextView
         android:id="@+id/movie_detail_summary"
         android:layout_width="match_parent"
@@ -35,7 +41,7 @@
         android:text="Arnold Schwarzenegger returns, it\u2019s 1984 again, and Sarah Connor is at risk once more." />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/see_more_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -43,5 +49,5 @@
             android:padding="@dimen/activity_vertical_margin"
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/cardview_light_background"
-            android:text="full Review" />
+            android:text="@string/see_more" />
 </LinearLayout>
