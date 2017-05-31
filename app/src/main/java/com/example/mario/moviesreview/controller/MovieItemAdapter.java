@@ -1,5 +1,6 @@
 package com.example.mario.moviesreview.controller;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -7,11 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mario.moviesreview.R;
 import com.example.mario.moviesreview.model.Movie;
+import com.example.mario.moviesreview.view.MovieDetailActivity;
+import com.example.mario.moviesreview.view.MovieListActivity;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -35,6 +39,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
         TextView publish_date;
         TextView movie_review;
         ImageView img;
+        Button btn;
 
         public ItemViewHolder(final View itemView) {
             super(itemView);
@@ -44,6 +49,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
             title = (TextView)itemView.findViewById(R.id.movie_title);
             publish_date = (TextView)itemView.findViewById(R.id.publish_date);
             movie_review = (TextView)itemView.findViewById(R.id.movie_description);
+            btn = (Button) itemView.findViewById(R.id.btnSeeMore);
 
             // Set description when talkback is activated
             img.setContentDescription(title.getText().toString() + " " + R.string.talkback_movie_image);
@@ -78,6 +84,9 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
         else{
             new LoadImageTask(itemViewHolder.img).execute(movie.imagePath);
         }
+
+        //TODO: Create intent to open MovieDetailActivity
+
 
     }
 
