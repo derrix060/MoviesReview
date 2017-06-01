@@ -68,17 +68,6 @@ public class MovieDetailActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if(item.getItemId() == R.id.action_back) {
-            this.finish();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     private class LoadImageTask extends AsyncTask<String,Void,Bitmap> {
         private ImageView imageView;
 
