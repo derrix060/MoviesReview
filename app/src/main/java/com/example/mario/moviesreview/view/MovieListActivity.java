@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.mario.moviesreview.controller.ApiUtil;
 import com.example.mario.moviesreview.controller.MovieItemAdapter;
@@ -32,6 +33,7 @@ public class MovieListActivity extends AppCompatActivity {
     private ApiUtil apiUtil;
     private RecyclerView mRecyclerView;
     private MovieItemAdapter adapter;
+    private ProgressBar progress;
 
 
     @Override
@@ -44,6 +46,7 @@ public class MovieListActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        progress = (ProgressBar) findViewById(R.id.progressBar);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.movies_rv);
         // improve performance when you know that changes
@@ -77,7 +80,6 @@ public class MovieListActivity extends AppCompatActivity {
             this.rootView = view;
         }
         protected ArrayList<Movie> doInBackground(String... movies) {
-
             URL url = apiUtil.createURL(movies[0]);
 
             HttpURLConnection connection = null;
@@ -109,6 +111,7 @@ public class MovieListActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(ArrayList<Movie> movies) {
+            progress.setVisibility(View.INVISIBLE);
             if(movies.size() == 0){
                 Snackbar.make(rootView, getString(R.string.dont_find_item), Snackbar.LENGTH_LONG).show();
             }

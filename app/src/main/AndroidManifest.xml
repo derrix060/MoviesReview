@@ -30,6 +30,16 @@
             </intent-filter>
 
         </activity>
+
+        <activity
+            android:name=".view.MovieDetailActivity"
+            android:theme="@style/AppTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

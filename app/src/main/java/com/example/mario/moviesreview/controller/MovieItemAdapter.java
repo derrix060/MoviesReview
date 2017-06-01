@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.example.mario.moviesreview.R;
 import com.example.mario.moviesreview.model.Movie;
 import com.example.mario.moviesreview.view.MovieDetailActivity;
-import com.example.mario.moviesreview.view.MovieListActivity;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -46,7 +45,6 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
         public ItemViewHolder(final View itemView) {
             super(itemView);
 
-            //cv = (CardView)itemView.findViewById(R.id.detach_card);
             img = (ImageView)itemView.findViewById(R.id.filmImage);
             title = (TextView)itemView.findViewById(R.id.movie_title);
             publish_date = (TextView)itemView.findViewById(R.id.publish_date);
@@ -57,6 +55,16 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
             img.setContentDescription(title.getText().toString() + " " + R.string.talkback_movie_image);
             context = itemView.getContext();
         }
+
+    }
+
+    public void openMovieDetails(Context context, Movie movie){
+        Intent intent = new Intent(context, MovieDetailActivity.class);
+        intent.putExtra("MOVIE_TITLE", movie.title);
+        intent.putExtra("MOVIE_SUMMARY", movie.review);
+        intent.putExtra("MOVIE_IMAGE", movie.imagePath);
+        intent.putExtra("MOVIE_URL", movie.link);
+        context.startActivity(intent);
     }
 
     // Constructor
@@ -92,11 +100,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
         itemViewHolder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(itemViewHolder.context, MovieDetailActivity.class);
-                intent.putExtra("MOVIE_TITLE", movie.title);
-                intent.putExtra("MOVIE_SUMMARY", movie.review);
-                intent.putExtra("MOVIE_IMAGE", movie.imagePath);
-                intent.putExtra("MOVIE_URL", movie.link);
+                openMovieDetails(itemViewHolder.context, movie);
 
             }
         });
