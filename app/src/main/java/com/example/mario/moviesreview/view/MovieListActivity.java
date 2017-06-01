@@ -1,6 +1,5 @@
 package com.example.mario.moviesreview.view;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -8,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.example.mario.moviesreview.controller.ApiUtil;
 import com.example.mario.moviesreview.controller.MovieItemAdapter;
@@ -61,24 +61,21 @@ public class MovieListActivity extends AppCompatActivity {
         apiUtil = new ApiUtil(this);
 
         // Get list of movies
-        String movieToSeach = getIntent().getStringExtra("movieToSearch");
+        String movieToSearch = getIntent().getStringExtra("movieToSearch");
 
-        new GetMoviesTask().execute(movieToSeach);
+        new GetMoviesTask(findViewById(android.R.id.content)).execute(movieToSearch);
 
 
-
-    }
-
-    private void movie_click(Movie m){
-        Intent intent = new Intent(this, MovieDetailActivity.class);
-        intent.putExtra("MOVIE_URL", m.getLink()); //Optional parameters
-        startActivity(intent);
 
     }
 
 
     private class GetMoviesTask extends AsyncTask<String, Void, ArrayList<Movie>> {
 
+        View rootView;
+        GetMoviesTask(View view){
+            this.rootView = view;
+        }
         protected ArrayList<Movie> doInBackground(String... movies) {
 
             URL url = apiUtil.createURL(movies[0]);
@@ -112,10 +109,15 @@ public class MovieListActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(ArrayList<Movie> movies) {
-            moviesList = movies;
-            adapter = new MovieItemAdapter(moviesList);
-            mRecyclerView.setAdapter(adapter);
-            mRecyclerView.smoothScrollToPosition(0);
+            if(movies.size() == 0){
+                Snackbar.make(rootView, getString(R.string.dont_find_item), Snackbar.LENGTH_LONG).show();
+            }
+            else{
+                moviesList = movies;
+                adapter = new MovieItemAdapter(moviesList);
+                mRecyclerView.setAdapter(adapter);
+                mRecyclerView.smoothScrollToPosition(0);
+            }
         }
     }
 }

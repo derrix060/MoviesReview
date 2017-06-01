@@ -11,6 +11,7 @@
     <string name="talkback_movie_image">Movie Image</string>
     <string name="read_error">Read error!</string>
     <string name="connect_error">Connect error!</string>
+    <string name="dont_find_item">We can\'t find this movie. Please try other name.</string>
 
 
     <!-- Card -->

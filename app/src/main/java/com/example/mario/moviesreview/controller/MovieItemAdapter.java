@@ -1,5 +1,6 @@
 package com.example.mario.moviesreview.controller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -40,6 +41,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
         TextView movie_review;
         ImageView img;
         Button btn;
+        private final Context context;
 
         public ItemViewHolder(final View itemView) {
             super(itemView);
@@ -53,7 +55,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
 
             // Set description when talkback is activated
             img.setContentDescription(title.getText().toString() + " " + R.string.talkback_movie_image);
-
+            context = itemView.getContext();
         }
     }
 
@@ -71,8 +73,8 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
     }
 
     @Override
-    public void onBindViewHolder(ItemViewHolder itemViewHolder, int position) {
-        Movie movie = myItens.get(position);
+    public void onBindViewHolder(final ItemViewHolder itemViewHolder, int position) {
+        final Movie movie = myItens.get(position);
 
         itemViewHolder.title.setText(movie.title);
         itemViewHolder.movie_review.setText(movie.headline);
@@ -80,13 +82,24 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
 
         if (movie.imagePath == ""){
             itemViewHolder.img.setMaxHeight(0);
+            itemViewHolder.img.setMaxWidth(0);
         }
         else{
             new LoadImageTask(itemViewHolder.img).execute(movie.imagePath);
         }
 
         //TODO: Create intent to open MovieDetailActivity
+        itemViewHolder.btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(itemViewHolder.context, MovieDetailActivity.class);
+                intent.putExtra("MOVIE_TITLE", movie.title);
+                intent.putExtra("MOVIE_SUMMARY", movie.review);
+                intent.putExtra("MOVIE_IMAGE", movie.imagePath);
+                intent.putExtra("MOVIE_URL", movie.link);
 
+            }
+        });
 
     }
 
