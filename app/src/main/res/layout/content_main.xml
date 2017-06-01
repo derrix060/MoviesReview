@@ -8,6 +8,7 @@
     tools:showIn="@layout/activity_main">
 
 
+
     <!-- Stop gain auto focus, only to presentation -->
     <LinearLayout
         android:focusable="true"

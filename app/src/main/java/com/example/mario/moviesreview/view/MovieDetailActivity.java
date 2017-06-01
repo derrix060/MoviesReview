@@ -37,6 +37,8 @@ public class MovieDetailActivity extends AppCompatActivity {
         setContentView(R.layout.movie_detail);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.movie_detail_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         title = (TextView) findViewById(R.id.movie_detail_title);
         summary = (TextView) findViewById(R.id.movie_detail_summary);
