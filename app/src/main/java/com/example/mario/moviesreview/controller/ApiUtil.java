@@ -60,7 +60,7 @@ public class ApiUtil {
                 String summary = movie.getString("summary_short");
                 String link = movie.getJSONObject("link").getString("url");
                 String image = "";
-                if (movie.getJSONObject("multimedia") != JSONObject.NULL)
+                if (!movie.isNull("multimedia") && movie.getJSONObject("multimedia") != JSONObject.NULL)
                     image = movie.getJSONObject("multimedia").getString("src");
 
                 String headline = movie.getString("headline");
