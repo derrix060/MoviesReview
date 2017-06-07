@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,8 +90,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Item
         itemViewHolder.publish_date.setText(movie.publish_date);
 
         if (movie.imagePath == ""){
-            itemViewHolder.img.setMaxHeight(0);
-            itemViewHolder.img.setMaxWidth(0);
+            itemViewHolder.img.setImageResource(R.drawable.ic_do_not_disturb_alt_black_24dp);
         }
         else{
             new LoadImageTask(itemViewHolder.img).execute(movie.imagePath);

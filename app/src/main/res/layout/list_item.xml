@@ -19,14 +19,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_weight="2"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -45,30 +45,29 @@
                         android:paddingTop="10dp"
                         android:text="Terminator: Genisys"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
 
                     <TextView
                         android:id="@+id/publish_descr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Publish date: "
-                        android:padding="3dp"
                         android:layout_below="@+id/movie_title"
-                        android:layout_toStartOf="@+id/publish_date" />
+                        android:layout_toStartOf="@+id/publish_date"
+                        android:padding="3dp"
+                        android:text="Publish date: " />
 
 
                     <TextView
                         android:id="@+id/publish_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="2dp"
-                        android:padding="3dp"
-                        android:text="15/5/2017"
-                        android:textSize="12sp"
+                        android:layout_alignParentEnd="true"
                         android:layout_alignTop="@+id/publish_descr"
-                        android:layout_alignParentEnd="true" />
+                        android:padding="3dp"
+                        android:paddingBottom="2dp"
+                        android:text="15/5/2017"
+                        android:textSize="12sp" />
 
 
                     <TextView
@@ -87,6 +86,7 @@
                         style="?android:attr/ratingBarStyleSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/movieRating"
                         android:layout_marginBottom="2dp"
                         android:layout_marginStart="10dp"
                         android:foregroundTint="@color/starFill"
@@ -98,8 +98,7 @@
                         android:progressTint="@color/starFill"
                         android:rating="3.3"
                         android:secondaryProgressTint="@color/starFill"
-                        android:secondaryProgressTintMode="src_in"
-                        android:layout_alignTop="@+id/movieRating" />
+                        android:secondaryProgressTintMode="src_in" />
 
 
                     <TextView
@@ -136,12 +135,12 @@
 
             <ImageView
                 android:id="@+id/filmImage"
-                android:layout_height="match_parent"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop"
+                android:layout_height="match_parent"
                 android:layout_margin="@dimen/card_margin"
-                />
+                android:layout_weight="1.06"
+                android:adjustViewBounds="false"
+                android:scaleType="centerCrop" />
 
         </LinearLayout>
     </RelativeLayout>

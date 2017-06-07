@@ -8,6 +8,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -49,10 +51,8 @@ public class MovieDetailActivity extends AppCompatActivity {
         title.setText(getIntent().getStringExtra("MOVIE_TITLE"));
         summary.setText(getIntent().getStringExtra("MOVIE_SUMMARY"));
         String imageURL = getIntent().getStringExtra("MOVIE_IMAGE");
-
-        if (imageURL == ""){
-            image.setMaxHeight(0);
-            image.setMaxWidth(0);
+        if (TextUtils.isEmpty(imageURL)){
+            image.setImageDrawable(getDrawable(R.drawable.ic_do_not_disturb_alt_black_24dp));
         }
         else {
             new LoadImageTask(image).execute(imageURL);
