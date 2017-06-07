@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Análise de Filmes</string>
+
+    <!-- Main Activity -->
+    <string name="search_hint">Insira o nome do filme...</string>
+    <string name="seach_button_descr">Procure um filme</string>
+
+    <!-- Movies Activity -->
+    <string name="title_movie">Filmes</string>
+    <string name="talkback_movie_image">Imagem do filme</string>
+    <string name="read_error">Erro de leitura!</string>
+    <string name="connect_error">Erro de conexão!</string>
+    <string name="dont_find_item">Nós não conseguimos encontrar o nome do filme. Por favor, tente outro nome.</string>
+
+
+    <!-- Card -->
+    <string name="see_more">Veja mais</string>
+</resources>

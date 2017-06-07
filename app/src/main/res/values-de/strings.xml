@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MoviesReview</string>
+
+    <!-- Main Activity -->
+    <string name="search_hint">Geben Sie den Filmnamen ein ...</string>
+    <string name="seach_button_descr">Suche nach dem Film</string>
+
+    <!-- Movies Activity -->
+    <string name="title_movie">Filme</string>
+    <string name="talkback_movie_image">Filmbild</string>
+    <string name="read_error">Lesefehler!</string>
+    <string name="connect_error">Fehler verbinden</string>
+    <string name="dont_find_item">Wir können diesen Film nicht finden. Bitte versuchen Sie einen anderen Namen.</string>
+
+
+    <!-- Card -->
+    <string name="see_more">Mehr anzeigen</string>
+</resources>
