@@ -140,6 +140,7 @@
                 android:layout_margin="@dimen/card_margin"
                 android:layout_weight="1.06"
                 android:adjustViewBounds="false"
+                android:contentDescription="@string/talkback_movie_image"
                 android:scaleType="centerCrop" />
 
         </LinearLayout>
